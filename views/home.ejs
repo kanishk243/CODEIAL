@@ -1,0 +1,54 @@
+<script type="text/javascript">
+  function preventBack() {
+    window.history.forward();
+  }
+  setTimeout("preventBack()", 0);
+  window.onunload = function () {
+    null;
+  };
+</script>
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>" />
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container bootstrap snippets">
+  <div class="col-md-7 col-md-offset-2" id="feed-container">
+    <% if(locals.user) {%>
+    <div class="panel social-feed-box">
+      <form action="/posts/create" method="POST" id="new-post-form">
+        <div class="panel-body">
+          <textarea
+            class="form-control"
+            name="content"
+            id="textarea-np"
+            cols="30"
+            rows="3"
+            placeholder="What's on your mind?..."
+          ></textarea>
+          <div class="mar-top clearfix">
+            <button class="btn btn-sm btn-primary pull-right" type="submit">
+              <i class="fa fa-pencil fa-fw"></i> Post
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <% } %>
+
+    <div id="posts-list-container">
+      <% for(i of feed){ %> <%- include('_posts') -%> <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('_chatbox') -%>
+
+<script src="<%= assetPath('js/home-post.js') %>"></script>
+<script src="<%= assetPath('https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js')%>"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
+
+<script>
+  new chatEngine("user-chat-box", "<%= locals.user.email %>");
+</script>

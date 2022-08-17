@@ -1,0 +1,80 @@
+<!-- <header> -->
+  <link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
+
+<!-- <ul>
+    <% if(locals.user){ %>
+    <li><a href="/users/profile/<%=user.id%>"><%= user.name %></a></li>
+    <li><a href="/users/sign-out">Sign-out</a></li>
+    <% } else {%>
+    <li><a href="/users/sign-in">Sign-In</a></li>
+    <li><a href="/users/sign-up">Sign-up</a></li>
+    <% } %>
+  </ul> -->
+<!-- navbar-bootstrap -->
+<nav class="navbar navbar-expand-lg navbar">
+  <!-- <div id="logo-header"> -->
+  <a href="/" class="navbar-brand">C<span id="dot">.</span></a>
+  <!-- </div> -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+  <ul class="navbar-nav ml-auto">
+    
+  </ul>
+  <!-- <form class="form-inline my-2 my-lg-0"> -->
+  <!-- <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      /> -->
+  <% if(locals.user){ %>
+  <!-- <li class="nav-item"> -->
+  <a href="/users/profile/<%=user.id%>">
+    <button class="btn btn-link my-2 my-sm-0">
+      <% if(user.avatar) { %>
+      <img
+        src="<%= user.avatar %>"
+        alt="<%= user.name %>"
+        id="profile-pic-header"
+      />
+      <% } %> <%= user.name %>
+    </button></a
+  >
+  <!-- </li> -->
+
+  <a href="/users/sign-out">
+    <button class="btn btn-outline-success my-2 my-sm-0">
+      Sign-out
+    </button></a
+  >
+  <% } else {%>
+  <a href="/users/sign-in">
+    <button class="btn btn-outline-success my-2 my-sm-0">
+      Sign-In
+    </button></a
+  >
+  <a href="/users/sign-up">
+    <button class="btn btn-outline-success my-2 my-sm-0">
+      Sign-up
+    </button></a
+  >
+  
+  <% } %>
+
+  <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button> -->
+  <!-- </form> -->
+  <!-- </div> -->
+</nav>
